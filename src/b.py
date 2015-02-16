@@ -16,7 +16,7 @@ def main():
  
     while 1:
         new_i, = struct.unpack('i', buf[:4])
-        new_s, = struct.unpack('3s', buf[4:7])
+        new_s, = struct.unpack('9s', buf[4:7])
  
         if i != new_i or s != new_s:
             print 'i: %s => %d' % (i, new_i)

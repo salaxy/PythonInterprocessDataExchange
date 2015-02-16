@@ -68,14 +68,15 @@ def main():
     # The offset should be uninitialized ('\x00')
     assert buf[offset] == '\x00'
  
+    stingToSend="xoxoxo--x"
     # Now ceate a string containing 'foo' by first creating a c_char array
-    s_type = ctypes.c_char * len('foo')
+    s_type = ctypes.c_char * len(stingToSend)
  
     # Now create the ctypes instance
     s = s_type.from_buffer(buf, offset)
  
     # And finally set it
-    s.raw = 'foo'
+    s.raw = stingToSend
  
     print 'First 10 bytes of memory mapping: %r' % buf[:10]
     raw_input('Now run b.py and press ENTER')
