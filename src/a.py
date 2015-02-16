@@ -18,11 +18,12 @@ def main():
     # flags: MAP_SHARED means other processes can share this mmap
     # prot: PROT_WRITE means this process can write to this mmap
     #linux calls
-    #buf = mmap.mmap(fd, mmap.PAGESIZE, mmap.MAP_SHARED, mmap.PROT_WRITE)
-    #mmap.mmap()
-    buf = mmap.mmap(fd, mmap.PAGESIZE, "shared", mmap.ACCESS_WRITE)
-    
-    #buf = mmap.mmap(fd.fileno(), 0)
+    if(os.name =="nt"):
+        print "this is windows"
+        buf = mmap.mmap(fd, mmap.PAGESIZE, "shared", mmap.ACCESS_WRITE)
+    if(os.name == "posix"):
+        print "this is linux or unix"
+        #buf = mmap.mmap(fd, mmap.PAGESIZE, mmap.MAP_SHARED, mmap.PROT_WRITE)
  
     # Now create an int in the memory mapping
     i = ctypes.c_int.from_buffer(buf)
